@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "45313250-2073-4fb4-8c13-8280e5652e76",
+		"name": "WebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32609805"
+	},
+	"item": [
+		{
+			"name": "ListadoTarjetas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5073/api/Tarjeta-de-credito/Listado",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5073",
+					"path": [
+						"api",
+						"Tarjeta-de-credito",
+						"Listado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GuardarMovimiento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"idMovimiento\": 3,\r\n            \"idTarjeta\": 1,\r\n            \"fecha\": \"2024-01-14\",\r\n            \"descripcion\": \"Despensa de Don Juan\",\r\n            \"monto\": 12.43,\r\n            \"tipo\": \"Compra\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5073/api/Tarjeta-de-credito/GuardarMovimiento/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5073",
+					"path": [
+						"api",
+						"Tarjeta-de-credito",
+						"GuardarMovimiento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditarMovimiento",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2024-01-16\",\r\n  \"descripcion\": \"Super Selectos\",\r\n  \"monto\": 34.76,\r\n  \"tipo\": \"Compra\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5073/api/Tarjeta-de-credito/EditarMovimiento/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5073",
+					"path": [
+						"api",
+						"Tarjeta-de-credito",
+						"EditarMovimiento",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarMovimiento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5073/api/Tarjeta-de-credito/EliminarMovimiento/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5073",
+					"path": [
+						"api",
+						"Tarjeta-de-credito",
+						"EliminarMovimiento",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EstadoMovimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5073/api/Tarjeta-de-credito/EstadoCuenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5073",
+					"path": [
+						"api",
+						"Tarjeta-de-credito",
+						"EstadoCuenta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
