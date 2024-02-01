@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Listado de Tarjetas";
+}
+@section Estilos {
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="card">
+    <div class="card-header">
+        Clientes
+    </div>
+    <div class="card-body">
+        <table id="tb_tarjetas" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id Tarjeta</th>
+                    <th>Número de Tarjeta</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tb_tarjetas').DataTable({
+                "ajax": {
+                    "url": "/api/Tarjeta-de-credito/Listado",
+                    "type": "GET",
+                    "dataSrc": "response"
+                },
+                "columns": [
+                    { "data": "idTarjeta" },
+                    { "data": "numeroTarjeta" },
+                    { "data": "nombre" },
+                    { "data": "apellido" },
+                    {
+                        "data": null,
+                        "defaultContent":
+                            '<button class="btn btn-primary btn-estado">Estado de Cuenta</button>' +
+                            '<span class="button-space"></span>'+
+                            '<button class="btn btn-secondary btn-pago">Registro Pago</button>' +
+                            '<span class="button-space"></span>'+
+                            '<button class="btn btn-info btn-compra">Registro Compra</button>' +
+                            '<span class="button-space"></span>'+
+                            '<button class="btn btn-warning btn-trans">Transacciones</button>'
+                    }
+                ],
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"
+                },
+                columnDefs: [
+                    {
+                        targets: 0,
+                        visible: false
+                    }
+                ]
+            });
+            // Evento clic para los botones
+
+            $('#tb_tarjetas tbody').on('click', '.btn-estado', function () {
+                var data = $('#tb_tarjetas').DataTable().row($(this).parents('tr')).data();
+                // Redireccionar a la vista
+                window.location.href = '/Home/EstadoCuenta/' + data.idTarjeta;
+            });
+
+            $('#tb_tarjetas tbody').on('click', '.btn-pago', function () {
+                var data = $('#tb_tarjetas').DataTable().row($(this).parents('tr')).data();
+                // Redireccionar a la vista
+                window.location.href = '/Home/RegistroPago/' + data.idTarjeta;
+            });
+
+            $('#tb_tarjetas tbody').on('click', '.btn-compra', function () {
+                var data = $('#tb_tarjetas').DataTable().row($(this).parents('tr')).data();
+                // Redireccionar a la vista
+                window.location.href = '/Home/RegistroCompra/' + data.idTarjeta;
+            });
+
+            $('#tb_tarjetas tbody').on('click', '.btn-trans', function () {
+                var data = $('#tb_tarjetas').DataTable().row($(this).parents('tr')).data();
+                // Redireccionar a la vista
+                window.location.href = '/Home/Transacciones/' + data.idTarjeta;
+            });
+        });
+    </script>
+}

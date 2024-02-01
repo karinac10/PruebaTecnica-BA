@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Transacciones";
+}
+@section Estilos {
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="card border-0" style="width: 50rem;">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Nombre del Cliente:</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Número de Tarjeta de Crédito:</h6>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table id="tb_transacciones" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id Movimiento</th>
+                    <th>Número de Autorización</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Cargo</th>
+                    <th>Abono</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tb_transacciones').DataTable({
+                "ajax": {
+                    "url": "/api/Tarjeta-de-credito/EstadoCuenta",
+                    "type": "GET",
+                    "dataSrc": "response"
+                },
+                "columns": [
+                    { "data": "idMovimiento" },
+                    { "data": "idTarjeta" },
+                    { "data": "fecha" },
+                    { "data": "descripcion" },
+                    {
+                        "data": "tipo",
+                        "render": function (data, type, row) {
+                            if (data === 'Compra') {
+                                return row.monto.toFixed(2); // Muestra el monto en "Cargo"
+                            } else if (data === 'Pago') {
+                                return ''; // Deja la celda en blanco para "Abono"
+                            } else {
+                                return data; // Muestra el valor original para otros tipos
+                            }
+                        }
+                    },
+                    {
+                        "data": "tipo",
+                        "render": function (data, type, row) {
+                            if (data === 'Pago') {
+                                return row.monto.toFixed(2); // Muestra el monto en "Abono"
+                            } else {
+                                return ''; // Deja la celda en blanco para "Abono" 
+                            }
+                        }
+                    }
+                ],
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"
+                },
+                columnDefs: [
+                    {
+                        targets: 0,
+                        visible: false
+                    }
+                ]
+            });
+        });
+    </script>
+}

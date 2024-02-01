@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Registro Pago";
+}
+<h3>@ViewData["Title"]</h3>
+
+<div class="card border-0" style="width: 50rem;">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Nombre del Cliente:</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Número de Tarjeta de Crédito:</h6>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Fecha Pago:</label>
+    <input type="date" class="form-control" id="exampleFormControlInput1">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Monto:</label>
+    <input type="number" class="form-control" id="exampleFormControlInput1">
+</div>
+
+<div class="d-grid gap-2 d-md-block">
+    <button class="btn btn-primary" type="button">Guardar</button>
+    <button class="btn btn-warning" type="button" onclick="window.history.back();">Cancelar</button>
+</div>
